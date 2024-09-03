@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "config.h"
+
 static const char *gErrorsDatabase[] = {[SUCCESS]          = "Operation succeeded",
                                         [ERR_MEM_ALLOC]    = "Memory allocation failed",
                                         [ERR_BAD_ARGUMENT] = "Function called with a bad argument"};

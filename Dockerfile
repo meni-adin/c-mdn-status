@@ -1,4 +1,3 @@
-ARG REPO_NAME=c-errors
 
 FROM ubuntu
 
@@ -12,6 +11,8 @@ RUN apt install git
 RUN apt install ninja-build
 RUN apt install python3
 RUN apt install valgrind
+
+ARG REPO_NAME=c-errors
 
 WORKDIR /root/
 COPY . ${REPO_NAME}
