@@ -25,7 +25,9 @@ TEST_F(ErrorsTest, AssertSuccess) {
 }
 
 TEST_F(ErrorsTest, AssertFailure) {
-    ASSERT_EXIT(errors_assert(ERR_BAD_ARGUMENT), ExitedWithCode(ERR_BAD_ARGUMENT), "Function called with a bad argument");
+    ASSERT_EXIT(errors_assert(ERR_BAD_ARGUMENT),
+                ExitedWithCode(ERR_BAD_ARGUMENT),
+                "Function called with a bad argument");
 }
 
 TEST_F(ErrorsTest, AssertUnknown) {

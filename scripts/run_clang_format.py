@@ -1,14 +1,12 @@
-import os
-import subprocess
-import shlex
-import utils
 from pathlib import Path
+import subprocess
+import utils
 
-CLANG_FORMAT_CFG = utils.WORKING_DIR/'clang_format.yml'
+CLANG_FORMAT_CFG = utils.PROJECT_DIR/'clang_format.yml'
 
 directories = [
-    utils.WORKING_DIR/'src',
-    utils.WORKING_DIR/'test',
+    utils.PROJECT_DIR/'src',
+    utils.PROJECT_DIR/'test',
 ]
 
 c_cpp_files = []
@@ -21,4 +19,4 @@ for directory in directories:
 for file in c_cpp_files:
     print(f'Running clang-format on {file}')
     command = f'clang-format -style=file:{CLANG_FORMAT_CFG} -i {file}'
-    subprocess.run(shlex.split(command), check=True)
+    subprocess.run(command, shell=True, check=True)
