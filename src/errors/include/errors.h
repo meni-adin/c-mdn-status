@@ -17,9 +17,20 @@ typedef enum status_t_ {
     ERR_COUNT,
 } status_t;
 
-void errors_assert(status_t status);
+/**
+ * @brief Assert that the given status is SUCCESS,
+ * otherwise print the status' message and exit the program with the status value.
+ *
+ * @param[in] status - the status to assert.
+ */
+void Errors_assert(status_t status);
 
-const char *errors_getStr(status_t status);
+/**
+ * @brief Retrieve the string describing the given status.
+ *
+ * @param status - the status to get the description for.
+ */
+const char *Errors_getStr(status_t status);
 
 #ifdef __cplusplus
 }

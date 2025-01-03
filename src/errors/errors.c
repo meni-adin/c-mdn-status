@@ -17,7 +17,7 @@ static const char *gErrorsDatabase[] = {[SUCCESS]                    = "Operatio
 _Static_assert(ARRAY_LEN(gErrorsDatabase) == ERR_COUNT,
                "Error: seems like a description string for an error is missing");
 
-void errors_assert(status_t status) {
+void Errors_assert(status_t status) {
     const char *errStr;
     if (status == SUCCESS) {
         return;
@@ -27,7 +27,7 @@ void errors_assert(status_t status) {
     exit((int)status);  // NOLINT (mute clang-tidy for 'concurrency-mt-unsafe' warning)
 }
 
-const char *errors_getStr(status_t status) {
+const char *Errors_getStr(status_t status) {
 #ifdef C_ERRORS_SAFE_MODE
     if (!IS_KNOWN_STATUS(status)) {
         return NULL;
