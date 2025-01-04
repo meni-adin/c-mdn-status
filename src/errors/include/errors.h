@@ -14,7 +14,9 @@ typedef enum status_t_ {
     ERR_BAD_ARGUMENT,
     ERR_ELEM_DATABASE_MISMATCH,
     ERR_DUPLICATE_ELEM,
-    ERR_COUNT,
+    ERR_DOUBLE_INIT,
+    ERR_DEINIT_WITHOUT_INIT,
+    ERR_COUNT,  // Must be last
 } status_t;
 
 /**

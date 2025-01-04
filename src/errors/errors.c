@@ -8,7 +8,9 @@ static const char *gErrorsDatabase[] = {[SUCCESS]                    = "Operatio
                                         [ERR_MEM_ALLOC]              = "Memory allocation failed",
                                         [ERR_BAD_ARGUMENT]           = "Function called with a bad argument",
                                         [ERR_ELEM_DATABASE_MISMATCH] = "The given element does not belong to the given database",
-                                        [ERR_DUPLICATE_ELEM]         = "The given element compares equal to another element already in the database"};
+                                        [ERR_DUPLICATE_ELEM]         = "The given element compares equal to another element already in the database",
+                                        [ERR_DOUBLE_INIT]            = "Init function called second time without an intervening call to deinit",
+                                        [ERR_DEINIT_WITHOUT_INIT]    = "Deinit function called without a previous call to init"};
 
 #define ARRAY_LEN(array) (sizeof(array) / sizeof(*(array)))
 
