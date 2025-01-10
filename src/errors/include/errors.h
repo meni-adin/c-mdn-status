@@ -12,10 +12,10 @@ typedef enum status_t_ {
     SUCCESS = 0,  // Must be first and equal 0
     ERR_MEM_ALLOC,
     ERR_BAD_ARGUMENT,
+    ERR_LIBRARY_NOT_INITIALIZED,
+    ERR_LIBRARY_ALREADY_INITIALIZED,
     ERR_ELEM_DATABASE_MISMATCH,
     ERR_DUPLICATE_ELEM,
-    ERR_DOUBLE_INIT,
-    ERR_DEINIT_WITHOUT_INIT,
     ERR_COUNT,  // Must be last
 } status_t;
 
