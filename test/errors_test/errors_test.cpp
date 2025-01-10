@@ -1,4 +1,5 @@
 
+#include <cstddef>
 #include <gtest/gtest.h>
 
 #include "errors.h"
@@ -18,6 +19,12 @@ TEST_F(ErrorsTest, InvalidArguments) {
 
 TEST_F(ErrorsTest, GetStr) {
     ASSERT_STREQ(Errors_getStr(ERR_MEM_ALLOC), "Memory allocation failed");
+}
+
+TEST_F(ErrorsTest, NoMissingStringsInTable) {
+    for (size_t idx = SUCCESS; idx < ERR_COUNT; ++idx) {
+        ASSERT_NE(Errors_getStr((status_t)idx), nullptr);
+    }
 }
 
 TEST_F(ErrorsTest, AssertSuccess) {
