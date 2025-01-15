@@ -23,7 +23,7 @@ TEST_F(ErrorsTest, GetStr) {
 
 TEST_F(ErrorsTest, NoMissingStringsInTable) {
     for (size_t idx = SUCCESS; idx < ERR_COUNT; ++idx) {
-        ASSERT_NE(Errors_getStr((status_t)idx), nullptr);
+        ASSERT_NE(Errors_getStr(static_cast<status_t>(idx)), nullptr);
     }
 }
 

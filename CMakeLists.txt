@@ -47,6 +47,13 @@ if(SANITIZED_BUILD)
     enable_sanitizers()
 endif()
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(${PROJECT_NAME_UC}_ENABLE_COVERAGE ON)
+    remove_cmakefiles_directories()
+else ()
+    set(${PROJECT_NAME_UC}_ENABLE_COVERAGE OFF)
+endif()
+
 include(CTest)
 
 add_subdirectory(src)
