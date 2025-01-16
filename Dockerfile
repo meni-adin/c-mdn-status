@@ -17,6 +17,9 @@ ARG REPO_NAME=c-errors
 WORKDIR /root/
 COPY . ${REPO_NAME}
 
+ENV CLICOLOR_FORCE=1
+ENV GTEST_COLOR=yes
+
 ARG CACHEBUST=1
 RUN git clone --depth 1 https://github.com/google/googletest.git _github.com/google/googletest
 

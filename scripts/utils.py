@@ -48,4 +48,4 @@ def running_on_unix():
 
 def colored_print(*args, color=COLOR_RESET, **kwargs):
     text = ' '.join(map(str, args))  # Mimic the way `print` joins arguments
-    print(f'{color}{text}{COLOR_RESET}', **kwargs)  # Pass kwargs to `print`
+    print(f'{color}{text}{COLOR_RESET}', flush=True, **kwargs)

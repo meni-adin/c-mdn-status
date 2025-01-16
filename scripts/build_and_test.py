@@ -20,7 +20,7 @@ def run_memory_test(build_type):
             if command:
                 tests_executables_dict[command[0]] = None
             else:
-                print(f"No commands found for test {test.get('name')}")
+                utils.colored_print(f"No commands found for test {test.get('name')}")
                 exit(1)
         for key in tests_executables_dict:
             command = f'valgrind --error-exitcode=1 --leak-check=full {key}'
@@ -38,12 +38,15 @@ def run_memory_test(build_type):
 def run_coverage_test(build_type):
     if utils.program_available('gcov'):
         gcnoFiles = list(Path(f'{utils.BUILD_TOP_DIR/build_type}/src').rglob(f'*.gcno'))
+        utils.colored_print('gcnoFiles:')
+        for gcnoFile in gcnoFiles:
+            utils.colored_print(f'{gcnoFile}')
         for gcnoFile in gcnoFiles:
             outputFileDir = Path(gcnoFile).parent
             command = f'gcov {gcnoFile}'
             result = utils.run_command(command, shell=True, cwd=outputFileDir, capture_output=True, text=True)
             if result.returncode != 0:
-                print(result.stderr)
+                utils.colored_print(result.stderr)
                 raise subprocess.CalledProcessError(result.returncode, command)
 
             pattern = r'Lines executed:(\d+\.\d+)%'
@@ -62,7 +65,11 @@ def run_coverage_test(build_type):
                 color = utils.COLOR_RED
             lines[1] = color + lines[1] + utils.COLOR_RESET
 
-            print('\n'.join(lines))
+            utils.colored_print('\n'.join(lines))
+    else:
+        utils.colored_print('Skipping coverage test')
+
+
 def main():
     parser = argparse.ArgumentParser(description='Build and test C/C++ code')
     parser.add_argument('-b', '--build-type', type=str, choices=BUILD_TYPES, help='Type of the build', default=None)
@@ -73,9 +80,11 @@ def main():
     else:
         requested_build_types = BUILD_TYPES
 
-    print(f'{requested_build_types=:}\n', flush=True)
+    utils.colored_print(f'{requested_build_types=:}\n')
 
     for build_type in requested_build_types:
+        utils.colored_print(f'Current {build_type=:}\n')
+
         command = f'cmake --preset config-{build_type}'
         utils.run_command(command, shell=True, check=True)
 

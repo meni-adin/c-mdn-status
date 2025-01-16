@@ -28,17 +28,17 @@ function(set_target_c_compiler_flags target)
             -Wdouble-promotion
             -Wimplicit-fallthrough
         )
+        if(${PROJECT_NAME_UC}_ENABLE_COVERAGE)
+            target_compile_options(${target} PRIVATE
+            -fprofile-arcs
+            -ftest-coverage
+            )
+            target_link_options(${target} PRIVATE
+            -fprofile-arcs
+            -ftest-coverage
+            )
+        endif()
         if(CMAKE_C_COMPILER_ID STREQUAL "AppleClang")
-            if(${PROJECT_NAME_UC}_ENABLE_COVERAGE)
-                target_compile_options(${target} PRIVATE
-                    -fprofile-arcs
-                    -ftest-coverage
-                )
-                target_link_options(${target} PRIVATE
-                    -fprofile-arcs
-                    -ftest-coverage
-                )
-            endif()
         endif()
         if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
             target_compile_options(${target} PRIVATE
@@ -61,17 +61,17 @@ endfunction()
 
 function(set_target_cpp_compiler_flags target)
     if((CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"))
+        if(${PROJECT_NAME_UC}_ENABLE_COVERAGE)
+            target_compile_options(${target} PRIVATE
+                -fprofile-arcs
+                -ftest-coverage
+            )
+            target_link_options(${target} PRIVATE
+                -fprofile-arcs
+                -ftest-coverage
+            )
+        endif()
         if(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
-            if(${PROJECT_NAME_UC}_ENABLE_COVERAGE)
-                target_compile_options(${target} PRIVATE
-                    -fprofile-arcs
-                    -ftest-coverage
-                )
-                target_link_options(${target} PRIVATE
-                    -fprofile-arcs
-                    -ftest-coverage
-                )
-            endif()
         endif()
         if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         endif()
