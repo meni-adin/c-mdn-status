@@ -36,38 +36,44 @@ def run_memory_test(build_type):
         utils.run_command(command, shell=True, check=True)
 
 def run_coverage_test(build_type):
-    if utils.program_available('gcov'):
-        gcnoFiles = list(Path(f'{utils.BUILD_TOP_DIR/build_type}/src').rglob(f'*.gcno'))
-        utils.colored_print('gcnoFiles:')
-        for gcnoFile in gcnoFiles:
-            utils.colored_print(f'{gcnoFile}')
-        for gcnoFile in gcnoFiles:
-            outputFileDir = Path(gcnoFile).parent
-            command = f'gcov {gcnoFile}'
-            result = utils.run_command(command, shell=True, cwd=outputFileDir, capture_output=True, text=True)
-            if result.returncode != 0:
-                utils.colored_print(result.stderr)
-                raise subprocess.CalledProcessError(result.returncode, command)
+    if utils.running_on_windows():
+        utils.colored_print('Skipping coverage test on Windows')
+        return
+    if not utils.program_available('gcov'):
+        utils.colored_print("Skipping coverage test - 'gcov' not available")
 
-            pattern = r'Lines executed:(\d+\.\d+)%'
-            lines = result.stdout.splitlines()
-            match = re.search(pattern, lines[1])
-            if match:
-                percentage = float(match.group(1))
-            else:
-                raise ValueError(f"Pattern '{pattern}' not found in gcov output")
+    gcdaFiles = list(Path(f'{utils.BUILD_TOP_DIR/build_type/"src"}').rglob(f'*.gcda'))
+    utils.colored_print('gcdaFiles:')
+    for gcdaFile in gcdaFiles:
+        utils.colored_print(f'{gcdaFile}')
+    if not gcdaFiles:
+        raise FileNotFoundError("No '.gcda' files found")
 
-            if int(percentage) == 100:
-                color = utils.COLOR_GREEN
-            elif percentage >= 80:
-                color = utils.COLOR_YELLOW
-            else:
-                color = utils.COLOR_RED
-            lines[1] = color + lines[1] + utils.COLOR_RESET
+    for gcdaFile in gcdaFiles:
+        outputFileDir = Path(gcdaFile).parent
+        command = f'gcov -n {gcdaFile}'
+        result = utils.run_command(command, shell=True, cwd=outputFileDir, capture_output=True, text=True)
+        if result.returncode != 0:
+            utils.colored_print(result.stderr)
+            raise subprocess.CalledProcessError(result.returncode, command)
 
-            utils.colored_print('\n'.join(lines))
-    else:
-        utils.colored_print('Skipping coverage test')
+        pattern = r'Lines executed:(\d+\.\d+)%'
+        lines = result.stdout.splitlines()
+        match = re.search(pattern, lines[1])
+        if match:
+            percentage = float(match.group(1))
+        else:
+            raise ValueError(f"Pattern '{pattern}' not found in gcov output")
+
+        if int(percentage) == 100:
+            color = utils.COLOR_GREEN
+        elif percentage >= 80:
+            color = utils.COLOR_YELLOW
+        else:
+            color = utils.COLOR_RED
+        lines[1] = color + lines[1] + utils.COLOR_RESET
+
+        utils.colored_print('\n'.join(lines))
 
 
 def main():
