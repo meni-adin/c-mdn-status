@@ -10,7 +10,8 @@ static const char *g_Errors_statusToStrMap[] = {[SUCCESS]                       
                                                 [ERR_LIBRARY_NOT_INITIALIZED]     = "Library function called without initializing the library first",
                                                 [ERR_LIBRARY_ALREADY_INITIALIZED] = "Library init function called second time",
                                                 [ERR_ELEM_DATABASE_MISMATCH]      = "The given element does not belong to the given database",
-                                                [ERR_DUPLICATE_ELEM]              = "The given element compares equal to another element already in the database"};
+                                                [ERR_DUPLICATE_ELEM]              = "The given element compares equal to another element already in the database",
+                                                [ERR_CHECK_ERRNO]                 = "A call to a library function failed, errno is set appropriately"};
 
 #define ARRAY_LEN(array) (sizeof(array) / sizeof(*(array)))
 _Static_assert(ARRAY_LEN(g_Errors_statusToStrMap) == ERR_COUNT,
