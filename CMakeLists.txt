@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(c_errors
+project(mdn_status
     LANGUAGES C CXX
 )
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UC)

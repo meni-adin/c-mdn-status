@@ -1,6 +1,6 @@
 FROM ubuntu
 
-ARG REPO_NAME=c-errors
+ARG REPO_NAME=c-mdn-status
 
 RUN echo "APT::Get::Assume-Yes \"true\";\nAPT::Get::force-yes \"true\";\n" > /etc/apt/apt.conf
 
