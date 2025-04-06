@@ -7,7 +7,7 @@
             "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "C_ERRORS_ENABLE_TESTS": "ON"
+                "MDN_STATUS_ENABLE_TESTS": "ON"
             }
         },
         {
@@ -15,7 +15,7 @@
             "hidden": true,
             "inherits": ["config-common"],
             "cacheVariables": {
-                "C_ERRORS_SAFE_MODE": {
+                "MDN_STATUS_SAFE_MODE": {
                     "type": "BOOL",
                     "value": "ON"
                 },
@@ -27,7 +27,7 @@
             "hidden": true,
             "inherits": ["config-common"],
             "cacheVariables": {
-                "C_ERRORS_SAFE_MODE": {
+                "MDN_STATUS_SAFE_MODE": {
                     "type": "BOOL",
                     "value": "OFF"
                 },

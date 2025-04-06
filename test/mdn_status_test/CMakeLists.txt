@@ -1,9 +1,9 @@
-set(TARGET_NAME errors_test)
+set(TARGET_NAME mdn_status_test)
 
 include(GoogleTest)
 
 set(TARGET_SOURCES
-    "errors_test.cpp"
+    "mdn_status_test.cpp"
 )
 
 add_executable(${TARGET_NAME}
@@ -12,7 +12,7 @@ add_executable(${TARGET_NAME}
 
 target_link_libraries(${TARGET_NAME}
     GTest::gmock
-    errors
+    mdn_status
 )
 
 cmake_language(CALL ${PROJECT_NAME}_set_target_cpp_compiler_flags ${TARGET_NAME})

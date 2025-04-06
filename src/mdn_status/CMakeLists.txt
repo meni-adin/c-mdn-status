@@ -1,7 +1,7 @@
-set(TARGET_NAME errors)
+set(TARGET_NAME mdn_status)
 
 set(TARGET_SOURCES
-    "errors.c"
+    "mdn_status.c"
 )
 
 add_library(${TARGET_NAME} STATIC
