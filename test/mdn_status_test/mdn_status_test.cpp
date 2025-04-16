@@ -2,7 +2,7 @@
 #include <cstddef>
 #include <gtest/gtest.h>
 
-#include "mdn_status.h"
+#include "mdn/status.h"
 
 using namespace std;
 using namespace testing;
