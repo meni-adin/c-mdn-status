@@ -1,1 +1,1 @@
-add_subdirectory(mdn_status)
+add_subdirectory(status)

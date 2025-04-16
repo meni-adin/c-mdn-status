@@ -7,4 +7,4 @@ cmake_language(CALL ${PROJECT_NAME}_fetch_content_wrapper
 
 enable_testing()
 
-add_subdirectory(mdn_status_test)
+add_subdirectory(status_test)

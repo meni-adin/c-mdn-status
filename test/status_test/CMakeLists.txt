@@ -3,7 +3,7 @@ set(TARGET_NAME mdn_status_test)
 include(GoogleTest)
 
 set(TARGET_SOURCES
-    "mdn_status_test.cpp"
+    "status_test.cpp"
 )
 
 add_executable(${TARGET_NAME}
