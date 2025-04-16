@@ -15,7 +15,7 @@ class mdnStatusTestDeathTest : public mdnStatusTest {};
 TEST_F(mdnStatusTest, InvalidArguments) {
     ASSERT_EQ(mdn_Status_getStr(MDN_STATUS_ENUM_COUNT), nullptr);
 }
-#endif  // C_DATABASES_SAFE_MODE
+#endif  // MDN_STATUS_SAFE_MODE
 
 TEST_F(mdnStatusTest, GetStr) {
     ASSERT_STREQ(mdn_Status_getStr(MDN_STATUS_ERROR_MEM_ALLOC), "Memory allocation failed");

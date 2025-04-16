@@ -39,7 +39,7 @@
             "hidden": true,
             "inherits": ["config-common"],
             "cacheVariables": {
-                "SANITIZED_BUILD": {
+                "MDN_STATUS_SANITIZED_BUILD": {
                     "type": "BOOL",
                     "value": "ON"
                 }
@@ -50,7 +50,7 @@
             "hidden": true,
             "inherits": ["config-common"],
             "cacheVariables": {
-                "SANITIZED_BUILD": {
+                "MDN_STATUS_SANITIZED_BUILD": {
                     "type": "BOOL",
                     "value": "OFF"
                 }
