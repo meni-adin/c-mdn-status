@@ -1,7 +1,7 @@
 set(TARGET_NAME mdn_status)
 
 set(TARGET_SOURCES
-    "mdn_status.c"
+    "status.c"
 )
 
 add_library(${TARGET_NAME} STATIC
