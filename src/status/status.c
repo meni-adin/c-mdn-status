@@ -35,6 +35,6 @@ const char *mdn_Status_getStr(mdn_Status_t status) {
     if (!IS_KNOWN_STATUS(status)) {
         return NULL;
     }
-#endif  // C_DATABASES_SAFE_MODE
+#endif  // MDN_STATUS_SAFE_MODE
     return g_mdn_Status_statusToStrMap[status];
 }
