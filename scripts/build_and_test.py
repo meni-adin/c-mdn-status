@@ -26,6 +26,8 @@ def get_tests_executables_dict(build_type):
 def run_tests(tests_executables_dict):
     for key in tests_executables_dict:
         command = f'{key}'
+        if utils.running_on_macos():
+            command = 'MallocNanoZone=0 ' + command
         utils.run_command(command, shell=True, check=True)
 
 def run_memory_test(tests_executables_dict):
@@ -48,6 +50,8 @@ def run_clang_tidy_test(build_type):
         utils.run_command(command, shell=True, check=True)
 
 def run_coverage_test(build_type):
+    GCOV_RESULT_FILES_EXTENSION = 'gcda'
+
     if utils.running_on_windows():
         utils.colored_print('Skipping coverage test on Windows')
         return
@@ -57,12 +61,12 @@ def run_coverage_test(build_type):
     command = f'gcov --version'
     utils.run_command(command, shell=True, check=True)
 
-    gcda_files = list(Path(f'{utils.BUILD_TOP_DIR/build_type/"src"}').rglob(f'*.gcda'))
-    utils.colored_print('gcdaFiles:')
+    gcda_files = list(Path(f'{utils.BUILD_TOP_DIR/build_type/"src"}').rglob(f'*.{GCOV_RESULT_FILES_EXTENSION}'))
+    utils.colored_print('gcda_files:')
     for gcda_file in gcda_files:
         utils.colored_print(f'{gcda_file}')
     if not gcda_files:
-        raise FileNotFoundError("No '.gcda' files found")
+        raise FileNotFoundError(f"No '.{GCOV_RESULT_FILES_EXTENSION}' files found")
 
     for gcda_file in gcda_files:
         outputFileDir = Path(gcda_file).parent
