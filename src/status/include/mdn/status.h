@@ -6,8 +6,6 @@
 extern "C" {
 #endif  // __cplusplus
 
-#include "mdn_status_config.h"
-
 typedef enum mdn_Status_t_ {
     MDN_STATUS_SUCCESS = 0,  // Must be first and equal 0
     MDN_STATUS_ERROR_MEM_ALLOC,
