@@ -1,6 +1,0 @@
-#ifndef MDN_STATUS_CONFIG_H
-#define MDN_STATUS_CONFIG_H
-
-#cmakedefine MDN_STATUS_SAFE_MODE
-
-#endif // MDN_STATUS_CONFIG_H
