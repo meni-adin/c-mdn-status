@@ -1,8 +1,8 @@
 # ignore
 __pycache__
 .DS_Store
-.vscode
 /_notes.md
-build
+/.vscode
+/build
 
 # except
